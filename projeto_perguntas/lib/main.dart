@@ -6,46 +6,47 @@ main() => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
-
+  var _pontuacaoTotal = 0;
   final _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': [
-        {'texto': 'Preto', 'nota': 10},
-        {'texto': 'Vermelho', 'nota': 10},
-        {'texto': 'Verde', 'nota': 3},
-        {'texto': 'Branco', 'nota': 1},
+        {'texto': 'Preto', 'pontuacao': 10},
+        {'texto': 'Vermelho', 'pontuacao': 10},
+        {'texto': 'Verde', 'pontuacao': 3},
+        {'texto': 'Branco', 'pontuacao': 1},
       ]
     },
     {
       'texto': 'Qual é o seu animal favorito?',
       'respostas': [
-        {'texto': 'Coelho', 'nota': 10},
-        {'texto': 'Cobra', 'nota': 5},
-        {'texto': 'Elefante', 'nota': 3},
-        {'texto': 'Leão', 'nota': 1},
+        {'texto': 'Coelho', 'pontuacao': 10},
+        {'texto': 'Cobra', 'pontuacao': 5},
+        {'texto': 'Elefante', 'pontuacao': 3},
+        {'texto': 'Leão', 'pontuacao': 1},
       ]
     },
     {
       'texto': 'Qual é o seu instrutor favorito?',
       'respostas': [
-        {'texto': 'Maria', 'nota': 10},
-        {'texto': 'João', 'nota': 5},
-        {'texto': 'Leo', 'nota': 3},
-        {'texto': 'Pedro', 'nota': 1},
+        {'texto': 'Maria', 'pontuacao': 10},
+        {'texto': 'João', 'pontuacao': 5},
+        {'texto': 'Leo', 'pontuacao': 3},
+        {'texto': 'Pedro', 'pontuacao': 1},
       ]
     }
   ];
 
-  void _responder() {
+  void _responder(int pontuacao) {
     // setState serve pro Flutter saber que variável ele tem que
     // observar pra saber se a tela precisa ser atualizada
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
-    debugPrint('Pergunta selecionada: $_perguntaSelecionada');
+    debugPrint('Pontuação total: $_pontuacaoTotal');
   }
 
   bool get temPerguntaSelecionada {
@@ -63,7 +64,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
           ? Questionario(
               perguntas: _perguntas,
               perguntaSelecionada: _perguntaSelecionada,
-              responder: _responder,
+              quandoResponder: _responder,
             )
           : const Resultado(),
     ));
