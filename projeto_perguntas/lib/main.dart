@@ -38,7 +38,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
   ];
 
   void _responder(int pontuacao) {
-    // setState serve pro Flutter saber que variável ele tem que
+    // setState serve pro Flutter saber qual variável ele tem que
     // observar pra saber se a tela precisa ser atualizada
     if (temPerguntaSelecionada) {
       setState(() {
@@ -47,6 +47,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
       });
     }
     debugPrint('Pontuação total: $_pontuacaoTotal');
+  }
+
+  void _reiniciarQuestionario() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
+    });
   }
 
   bool get temPerguntaSelecionada {
@@ -66,7 +73,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
               perguntaSelecionada: _perguntaSelecionada,
               quandoResponder: _responder,
             )
-          : Resultado(pontuacao: _pontuacaoTotal),
+          : Resultado(
+              pontuacao: _pontuacaoTotal,
+              quandoReiniciarQuestionario: _reiniciarQuestionario,
+            ),
     ));
   }
 }
