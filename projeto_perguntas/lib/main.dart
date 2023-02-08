@@ -35,11 +35,12 @@ class _PerguntaAppState extends State<PerguntaApp> {
       }
     ];
 
-    List<Widget> respostas = [];
+    List<String> respostas = perguntas[_perguntaSelecionada].cast()['respostas'];
+    // List<Widget> widgets = respostas.map((resposta) => Resposta(resposta, _responder)).toList();
 
-    for (var textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
-      respostas.add(Resposta(textoResp, _responder));
-    }
+    // for (var textoResp in respostas) {
+    //   widgets.add(Resposta(textoResp, _responder));
+    // }
 
     return MaterialApp(
       // home: Text('Olá Flutter!!!'),
@@ -50,7 +51,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
-            ...respostas,
+            // ...widgets,
+            ...respostas.map((resposta) => Resposta(resposta, _responder)).toList()
           ],
         ),
       )
