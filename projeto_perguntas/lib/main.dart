@@ -4,8 +4,14 @@ main() => runApp(PerguntaApp());
 
 class PerguntaApp extends StatelessWidget {
 
+  // Isso viola o componente, já que ele é sem estado (StatelessWidget),
+  // por isso a tela não muda a Pergunta a cada vez que essa variável
+  // é incrementada
+  var perguntaSelecionada = 0;
+
   void responder() {
-    // print('Pergunta respondida!');
+    perguntaSelecionada++;
+    debugPrint('$perguntaSelecionada');
     debugPrint('Pergunta respondida!');
   }
 
@@ -30,18 +36,18 @@ class PerguntaApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(perguntas[0]),
+            Text(perguntas[perguntaSelecionada]),
             ElevatedButton(
+              child: Text('Resposta 1'),
               onPressed: responder,
-              child: Text('Resposta 1')
             ),
             ElevatedButton(
-              onPressed: funcaoQueRetornaUmaOutraFuncao(),
-              child: Text('Resposta 2')
+              child: Text('Resposta 2'),
+              onPressed: responder,
             ),
             ElevatedButton(
-              onPressed: () => debugPrint('Resposta 3 !!!!'),
-              child: Text('Resposta 3')
+              child: Text('Resposta 3'),
+              onPressed: responder,
             ),
           ],
         ),
