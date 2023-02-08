@@ -51,12 +51,19 @@ class _PerguntaAppState extends State<PerguntaApp> {
         appBar: AppBar(
           title: Text('Perguntas'),
         ),
-        body: temPerguntaSelecionada ? Column(
-          children: [
-            Questao(_perguntas[_perguntaSelecionada]['texto'].toString()),
-            ...respostas.map((resposta) => Resposta(resposta, _responder)).toList()
-          ],
-        ) : null,
+        body: temPerguntaSelecionada
+          ? Column(
+              children: [
+                Questao(_perguntas[_perguntaSelecionada]['texto'].toString()),
+                ...respostas.map((resposta) => Resposta(resposta, _responder)).toList()
+              ],
+            )
+          : Center(
+              child: Text(
+                'Parabéns!',
+                style: TextStyle(fontSize: 28),
+              ),
+            ),
       )
     );
   }
