@@ -69,8 +69,8 @@ class MyHomePage extends StatelessWidget {
                       )),
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        tr.value.toString(),
-                        style: TextStyle(
+                        'R\$ ${tr.value.toStringAsFixed(2)}',
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Colors.purple,
@@ -82,14 +82,14 @@ class MyHomePage extends StatelessWidget {
                       children: [
                         Text(
                           tr.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           tr.date.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                           ),
                         ),
